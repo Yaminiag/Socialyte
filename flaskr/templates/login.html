@@ -1,0 +1,57 @@
+<!-- <html>
+  <head>
+    <title>Flask Intro - login page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Please login</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="Username" name="username" value="{{
+          request.form.username }}">
+         <input type="password" placeholder="Password" name="password" value="{{
+          request.form.password }}">
+        <input class="btn btn-default" type="submit" value="Login">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="/static/css/login.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+    	<div id="login-box">
+    		<div class="logo">
+    			<!--<img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img img-responsive img-circle center-block"/>-->
+    			<h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
+    		</div><!-- /.logo -->
+    		<div class="controls">
+          <form action="" method="post">
+            <input type="text" placeholder="Username" name="username" value="{{
+              request.form.username }}" class="form-control">
+            </br>
+             <input type="password" placeholder="Password" name="password" value="{{
+              request.form.password }}"class="form-control">
+            <button class="btn btn-default btn-block btn-custom" type="submit" value="Login">LOGIN</button>
+          </form>
+          {% if error %}
+            <p class="error"style="color:white;"><strong>Error:</strong> {{ error }}</p>
+          {% endif %}
+    		</div><!-- /.controls -->
+    	</div><!-- /#login-box -->
+    </div><!-- /.container -->
+  </body>
+</html>

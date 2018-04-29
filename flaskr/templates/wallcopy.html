@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<title>FUCK YEAH</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+a {
+  text-decoration: none;
+}
+body {
+  background-color: black;
+}
+.bestcolor {
+  background-color: rgb(98,96,96);
+}
+.madcolor {
+  background-color: #ff5252;
+}
+.blackcolor {
+  background-color: black;
+}
+</style>
+<body class="">
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar bestcolor w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large madcolor"><i class="fa fa-home w3-margin-right"></i>Kickass Logo</a>
+
+
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+    <!-- <img src="/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar"> -->
+  </a>
+ </div>
+</div>
+
+
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+         <a href="{{url_for('user')}}" style="text-decoration:none;"><h4 class="w3-center"> {{name}}'s Profile</h4></a>
+         <p class="w3-center"><img src="/static/images/user.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <hr>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> {{detail[0]}}</p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{detail[1]}}</p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{detail[2]}}</p>
+        </div>
+      </div>
+      <br>
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+              <form action="{{url_for('post')}}" method="get">
+                <input class="w3-border w3-padding" style="margin:10px;width:98%" type="text area" name="postcontent" placeholder="How are you feeling today?" required> </br>
+                <input class="w3-border w3-padding" style="margin:10px;width:98%" type="text" name="postimg" placeholder="Enter image location"></br>
+                <input class="w3-button w3-theme" style="background-color:red;margin:10px;width:18%" type="submit" value="Post">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% for post in posts %}
+      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <!-- <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
+        <span class="w3-right w3-opacity">{{post[5]}} ago</span>
+        <h4>{{post[6]}}</h4><br>
+        <img style="max-width:700px;max-height:400px;"src="home.jpg" alt="post image">
+        <hr class="w3-clear">
+        <p>{{post[2]}}</p>
+          <div class="w3-row-padding" style="margin:0 -16px">
+
+        </div>
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+      </div>
+      {% endfor %}
+    <!-- End Middle Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-col m2">
+
+
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Popular Posts</p>
+          <div class="w3-card w3-round w3-white w3-center">
+            <div class="w3-container">
+              <p style="text-align:left;">Post Content</p>
+              <img style="max-width:300px;max-height:100px;"src="home.jpg" alt="post image">
+              <p style="text-align:right">By whom</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Posts with pics</p>
+          <div class="w3-card w3-round w3-white w3-center">
+            <div class="w3-container">
+              <p style="text-align:left;">Post Content</p>
+              <img style="max-width:300px;max-height:100px;"src="home.jpg" alt="post image">
+              <p style="text-align:right">By whom</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    <!-- End Right Column -->
+    </div>
+
+  <!-- End Grid -->
+  </div>
+
+<!-- End Page Container -->
+</div>
+<br>
+
+
+
+
+<script>
+
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>

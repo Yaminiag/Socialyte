@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/login.css" rel="stylesheet">
+    <!-- <script src="static/js/login.js"></script> --> -->
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+    	<div id="login-box">
+    		<div class="logo">
+    			<!--<img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img img-responsive img-circle center-block"/>-->
+    			<h1 class="logo-caption"><span class="tweak">S</span>IGNUP</h1>
+    		</div><!-- /.logo -->
+    		<div class="controls">
+          <form  action = "{{ url_for('reg') }}"  method="get">
+                <input type="text" name="f_name" placeholder="First Name" class="form-control" />
+                <input type="text" name="l_name" placeholder="Last Name" class="form-control" />
+    			      <input type="email" name="email" placeholder="Email ID" class="form-control" />
+    			      <input type="password" name="pwd" placeholder="Password" class="form-control" />
+                <input type="password" name="conf_pwd" placeholder="Confirm Password" class="form-control" />
+                <input type="text" name="add" placeholder="Address" class="form-control" />
+                <input type="text" onfocus="(this.type='date')" name="dob" placeholder="Date Of Birth" class="form-control"/>
+                <select class="form-control">
+                <option color='#868e96'> Gender </option>
+                <option name="gender" value="male"> Male</option>
+                <option name="gender" value="female"> Female</option>
+                <option name="gender" value="other"> Other</option>
+                </select>
+                <input type="text" name="phno" placeholder="Phone Number" class="form-control" />
+                <input type="text" name="loc" placeholder="Location" class="form-control" />
+    			<button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
+        </form>
+    		</div><!-- /.controls -->
+    	</div><!-- /#login-box -->
+    </div><!-- /.container -->
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>-->
+  </body>
+</html>

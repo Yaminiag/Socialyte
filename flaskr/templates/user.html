@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<title>SOCIALYTE</title>
+<meta charset="UTF-8" http-equiv="refresh" content="120">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+a {
+  text-decoration: none;
+}
+</style>
+<body class="w3-theme-l5">
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="http://127.0.0.1:5000/wall.html/" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>SOCIALYTE</a>
+
+  <form class="" action="{{url_for('signout')}}" method="post">
+    <button type="submit" class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-large w3-right w3-hover-white" name="signout">Sign Out</button>
+  </form>
+  <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+    <img src="/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+  </a> -->
+ </div>
+</div>
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center"> {{name}}'s Profile</h4>
+         <p class="w3-center"><img src="/static/images/user.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <hr>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>{{detail[0]}} </p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{detail[1]}}</p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>{{detail[2]}}</p>
+        </div>
+      </div>
+      <br>
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+              <form action="{{url_for('post')}}" method="get">
+                <input class="w3-border w3-padding" style="margin:10px;width:98%" type="text area" name="postcontent" placeholder="How are you feeling today?" required> </br>
+                <input class="w3-border w3-padding" style="margin:10px;width:98%" type="text" name="postimg" placeholder="Enter image location"></br>
+                <input class="w3-button w3-theme" style="margin:10px;width:18%" type="submit" value="Post">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% for post in posts %}
+      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <span class="w3-right w3-opacity">{{post[5]}} ago</span>
+        <h4>{{name}}</h4>
+        <img style="max-width:600px;max-height:400px;"src="{{post[8][0]}}" >
+      
+
+        <p>{{post[2]}}</p>
+        <div class="w3-row-padding" style="margin:0 -16px">
+        </div>
+        <p style="display:inline" >{{post[6]}} Likes</p>
+        <form style="display:inline;margin-left:10px;" action="{{url_for('delete')}}" method='post'>
+          <button type="submit" value="{{post[1]}}" name="delete" id="deletebutton" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-trash" ></i>  Delete Post</button>
+        </form>
+        <hr class="w3-clear">
+        <p><i> Comments:</i></p>
+        <ul style="list-style-type:none">
+          {% for com in post[7] %}
+          <div class="w3-card w3-round w3-white w3-padding-small">
+            <div class="w3-container">
+              <li>
+                {{com[1]}}
+                <p style="display:inline;margin-left:400px;">{{com[2]}} likes</p>
+                <form action="{{url_for('commentlike')}}" method='post' style="display:inline">
+                  <button style="margin-left:10px;"type="submit" class="w3-button w3-theme w3-tiny" name="comlike" value="{{com[0]}}"><i class="fa fa-thumbs-up"></i> LIKE</button>
+                </form>
+              </li>
+            </div>
+          </div>
+          <br>
+          {% endfor %}
+        </ul>
+        <hr class="w3=clear">
+        <form action="{{url_for('comment')}}" method="post">
+          <input class="w3-border w3-padding" style="margin:5px;width:75%" type="text" name="comment_content" placeholder="Enter Comment">
+          <button class="w3-button w3-theme" style="margin:5px;width:18%" type="submit" value="{{post[1]}}" name="comment"><i class="fa fa-comment"></i> COMMENT</button>
+        </form>
+      </div>
+      {% endfor %}
+    <!-- End Middle Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-col m2">
+
+
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container" style="text-align: left;padding:20px;">
+          <h4 style="text-align: center">Friends List</h4>
+          <ul>
+          {% for row in rows %}
+          <!-- <a href="#"><li>{{row[0]}}</li></a> -->
+          <li>
+            <form class="" action="{{url_for('friends')}}" method="post">
+              <button class="w3-btn"type="submit" name="friend" value="{{row[0]}}">{{row[0]}}</button>
+            </form>
+          </li>
+          {% endfor %}
+        </ul>
+        </div>
+      </div>
+    </br>
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container" style="text-align: left;padding:20px;">
+          <h4 style="text-align: center">Suggestion</h4>
+          <ul>
+          {% for sug in sugg %}
+
+          <form action="{{url_for('addfrnd')}}" method="post">
+            <li name="{{sugg[0]}}">{{sug[0]}}</li>
+            <button style="float:right;" type="submit" class="w3-button w3-theme-d1 w3-tiny w3-ripple" value="{{sug[0]}}" name="friend">Add Friend</button>
+           </form>
+          {% endfor %}
+        </ul>
+        </div>
+      </div>
+      <br>
+    <!-- End Right Column -->
+    </div>
+
+  <!-- End Grid -->
+  </div>
+
+<!-- End Page Container -->
+</div>
+<br>
+</body>
+</html>
